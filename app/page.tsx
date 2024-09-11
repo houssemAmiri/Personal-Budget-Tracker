@@ -1,5 +1,9 @@
 import { Flex, Text, Button } from "@radix-ui/themes";
-export default function Home() {
+import prisma from "./lib/prisma";
+export default async function Home() {
+  const user = await prisma.user.findMany();
+  console.log(user);
+
   return (
     <Flex
       direction="column"
