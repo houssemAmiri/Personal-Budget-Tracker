@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Expense Tracker App is a personal finance management tool designed to help users track their income, expenses, and budgets with a simple and user-friendly interface. It provides features such as detailed expense categorization, income management, budget goal setting, and insightful reports with downloadable options. The app is built using Next.js, PostgresSQL, and styled with RadixUI, ensuring a fast, responsive, and visually appealing experience.
+The Expense Tracker App is a personal finance management tool designed to help users track their income, expenses, and budgets with a simple and user-friendly interface. It provides features such as detailed expense categorization, income management, budget goal setting, and insightful reports with downloadable options. The app is built using Next.js, SQLite, and styled with RadixUI, ensuring a fast, responsive, and visually appealing experience.
 
 ## Features
 
@@ -51,7 +51,7 @@ The Expense Tracker App is a personal finance management tool designed to help u
 ### Prerequisites
 
 - Node.js
-- PostgreSQL
+- SQLite
 
 ### Installation
 
@@ -67,8 +67,18 @@ pnpm install
 ```
 
 3. Set up environment variables for database, authentication, and any external services.
+   example in `.env.example`
 
-4. Run the development server:
+4. Create and seed the database
+   Run the following command to create your SQLite database file. This also creates the User table that's defined in `prisma/schema.prisma`:
+
+```bash
+npm run migrate
+```
+
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in `prisma/seed.ts` will be executed and your database will be populated with the sample data.
+
+5. Run the development server:
 
 ```bash
 npm run dev
@@ -79,7 +89,15 @@ pnpm dev
 
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Prisma Studio
+
+Prisma Studio is a visual editor for the data in your database
+
+```bash
+npm run prisma-studio
+```
 
 ### Production Build
 
