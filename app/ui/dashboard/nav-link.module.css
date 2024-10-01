@@ -1,0 +1,15 @@
+.link {
+    margin: 4px 0;
+}
+
+.link:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(224 242 254 / var(--tw-bg-opacity))
+        /* #e0f2fe */
+    ;
+    --tw-text-opacity: 1;
+    color: rgb(47 111 235 / var(--tw-text-opacity))
+        /* #2f6feb */
+    ;
+
+}

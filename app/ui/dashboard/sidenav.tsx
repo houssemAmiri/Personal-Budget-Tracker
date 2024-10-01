@@ -13,7 +13,7 @@ export default function Sidenav() {
                     height="80px"
                     mb="8px"
                     p="16px"
-                    className={clsx(styles.logoContainer, styles.bgBlue600)}
+                    className={clsx(styles.logoContainer, 'bg-blue-600')}
                     direction="column"
                     justify="end"
                     align="center"
@@ -24,6 +24,7 @@ export default function Sidenav() {
 
             <Flex flexGrow="1" justify="between" direction="column">
                 <NavLink />
+                <Box height="auto" width="100%" flexGrow="1" className="bg-gray-50" />
 
                 <form>
                     <Button size="3" className={styles.logoutButton}>

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import './reset.css';
+import './styles.css'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
