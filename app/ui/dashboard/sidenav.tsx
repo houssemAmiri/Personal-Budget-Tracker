@@ -1,9 +1,10 @@
 import React from "react";
 import NavLink from "./nav-links";
-import { Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import styles from "./sidenav.module.css";
 import clsx from "clsx";
+import { PowerIcon } from "@heroicons/react/24/outline";
 export default function Sidenav() {
     return (
         <Flex direction="column" py="16px" px="12px" width="100%">
@@ -21,10 +22,17 @@ export default function Sidenav() {
                 </Flex>
             </Link>
 
-
-            <Flex flexGrow="1" justify="between">
+            <Flex flexGrow="1" justify="between" direction="column">
                 <NavLink />
 
+                <form>
+                    <Button size="3" className={styles.logoutButton}>
+                        <PowerIcon width="24px" />
+                        <Box as="span" display="none">
+                            Sign Out
+                        </Box>
+                    </Button>
+                </form>
             </Flex>
         </Flex>
     );
