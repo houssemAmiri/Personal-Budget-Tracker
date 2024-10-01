@@ -1,0 +1,14 @@
+.logoContainer {
+    border-radius: 6px;
+}
+
+.bgBlue600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(47 111 235 / var(--tw-bg-opacity))
+        /* #2f6feb */
+    ;
+}
+
+.logoText {
+    color: white
+}

@@ -7,7 +7,6 @@ export default async function Home() {
   return (
     <Flex
       direction="column"
-      gap="2"
       justify="center"
       align="center"
       content="center"
