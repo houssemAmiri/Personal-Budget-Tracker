@@ -12,7 +12,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Flex width={{
                 initial: '100%',
                 md: "220px",
-                xs: '100%'
             }} >
                 <Sidenav />
             </Flex>
