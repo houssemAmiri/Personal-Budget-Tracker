@@ -6,7 +6,7 @@ export default function TransactionsPage() {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Transactions', href: '/transactions', active: true },
+          { label: 'Transactions', href: '/dashboard/transactions', active: true },
         ]}
       />
 

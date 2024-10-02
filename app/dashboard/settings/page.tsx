@@ -6,7 +6,7 @@ export default function SettingsPage() {
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Settings', href: '/settings', active: true },
+                    { label: 'Settings', href: '/dashboard/settings', active: true },
                 ]}
             />
 

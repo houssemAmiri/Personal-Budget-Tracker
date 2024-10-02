@@ -6,7 +6,7 @@ export default function CategoriesPage() {
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Categories', href: '/categories', active: true },
+                    { label: 'Categories', href: '/dashboard/categories', active: true },
                 ]}
             />
 
