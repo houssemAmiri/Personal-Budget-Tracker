@@ -10,7 +10,6 @@ import Link from "next/link";
 import navlinkStyle from "./nav-link.module.css";
 import clsx from "clsx";
 
-
 type LinkType = {
     name: string;
     href: string;
@@ -48,9 +47,21 @@ export default function NavLink({
                         onClick={closeNav}
                         aria-label={link.name}
                     >
-                        <Flex direction="row" height="48px" align="center" p="3">
+                        <Flex
+                            direction="row"
+                            align="center"
+                            p="3"
+                            justify={{
+                                initial: "center",
+                                md: "start",
+                            }}
+                        >
                             <LinkIcon width="24px" />
-                            <Box as="span" ml="12px">
+                            <Box
+                                as="span"
+                                ml="12px"
+                                display={{ initial: "none", md: "block" }}
+                            >
                                 {link.name}
                             </Box>
                         </Flex>

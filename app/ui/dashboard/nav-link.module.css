@@ -1,5 +1,6 @@
 .link {
     margin: 4px 0;
+    width: 100%;
 }
 
 .link:hover {
@@ -12,4 +13,10 @@
         /* #2f6feb */
     ;
 
+}
+
+@media (max-width: 1024px) {
+    .link {
+        margin: 4px 6px;
+    }
 }

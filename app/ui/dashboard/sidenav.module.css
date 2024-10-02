@@ -6,9 +6,7 @@
     color: white
 }
 
-.logoutButton {
-    width: 100%;
-}
+
 
 .iconButton {
     background-color: transparent;
@@ -30,7 +28,17 @@
 }
 
 @media (min-width: 1024px) {
-    .iconButton {
+    .logoutButtonHeader {
+        display: none;
+    }
+}
+
+.logoutButtonSideNav {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .logoutButtonSideNav {
         display: none;
     }
 }

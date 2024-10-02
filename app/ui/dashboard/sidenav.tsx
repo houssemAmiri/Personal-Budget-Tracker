@@ -1,15 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import { Flex, Text } from "@radix-ui/themes";
+import React from "react";
+import { Box, Button, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import styles from "./sidenav.module.css";
 import clsx from "clsx";
-import { PowerIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import NavSection from "./nav-section";
+import { PowerIcon } from "@heroicons/react/24/outline";
+import NavLink from "./nav-links";
 
 export default function Sidenav() {
-    const [isOpen, setIsOpen] = useState(false);
-
     return (
         <Flex direction="column" py="16px" px="12px" width="100%">
             <Flex
@@ -23,13 +21,6 @@ export default function Sidenav() {
                 }}
                 align="center"
             >
-                <button
-                    className={styles.iconButton}
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle navigation"
-                >
-                    <Bars3Icon width="24px" />
-                </button>
                 <Link href="/">
                     <Flex
                         height="80px"
@@ -43,34 +34,46 @@ export default function Sidenav() {
                         <Text className={styles.logoText}>Floussi</Text>
                     </Flex>
                 </Link>
-
-                <button className={styles.iconButton} aria-label="Logout">
-                    <PowerIcon width="24px" />
-                </button>
+                <form>
+                    <button
+                        className={`${styles.iconButton} ${styles.logoutButtonHeader}`}
+                        aria-label="Logout"
+                    >
+                        <PowerIcon width="24px" />
+                        <Box as="span" display="none">
+                            Sign Out
+                        </Box>
+                    </button>
+                </form>
             </Flex>
 
-            {/* web version */}
+            <Flex
+                flexGrow="1"
+                direction={{ initial: "row", md: "column" }}
+                justify="between"
+                width="100%"
+            >
+                <NavLink />
+                <Box
+                    display={{
+                        initial: "none",
+                        md: "block",
+                    }}
+                    height="auto"
+                    width="100%"
+                    flexGrow="1"
+                    className="bg-gray-50"
+                />
 
-            <NavSection
-                display={{
-                    initial: "none",
-                    md: "flex",
-                    xs: "none",
-                }}
-
-            />
-
-            {/* mobile version */}
-            <NavSection
-                display={{
-                    initial: isOpen ? "flex" : "none",
-                    md: "none",
-                }}
-                setIsOpen={setIsOpen}
-                logoutButton={false}
-
-            />
-
+                <form>
+                    <Button size="3" className={styles.logoutButtonSideNav}>
+                        <PowerIcon width="24px" />
+                        <Box as="span" display="none">
+                            Sign Out
+                        </Box>
+                    </Button>
+                </form>
+            </Flex>
         </Flex>
     );
 }
