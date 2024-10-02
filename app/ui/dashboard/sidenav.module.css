@@ -9,3 +9,28 @@
 .logoutButton {
     width: 100%;
 }
+
+.iconButton {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 12px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+
+}
+
+.iconButton:active,
+.iconButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+@media (min-width: 1024px) {
+    .iconButton {
+        display: none;
+    }
+}

@@ -4,8 +4,16 @@ import Sidenav from '../ui/dashboard/sidenav'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <Flex height="100vh">
-            <Flex width="220px" style={{ borderRight: '1px solid black' }}>
+        <Flex height="100vh" direction={{
+            initial: 'column',
+            md: 'row',
+            xs: 'column'
+        }}>
+            <Flex width={{
+                initial: '100%',
+                md: "220px",
+                xs: '100%'
+            }} >
                 <Sidenav />
             </Flex>
             <Flex p="24px" flexGrow="1" >{children}</Flex>

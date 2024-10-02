@@ -1,40 +1,76 @@
-import React from "react";
-import NavLink from "./nav-links";
-import { Box, Button, Flex, Text } from "@radix-ui/themes";
+"use client";
+import React, { useState } from "react";
+import { Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import styles from "./sidenav.module.css";
 import clsx from "clsx";
-import { PowerIcon } from "@heroicons/react/24/outline";
+import { PowerIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import NavSection from "./nav-section";
+
 export default function Sidenav() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <Flex direction="column" py="16px" px="12px" width="100%">
-            <Link href="/">
-                <Flex
-                    height="80px"
-                    mb="8px"
-                    p="16px"
-                    className={clsx(styles.logoContainer, 'bg-blue-600')}
-                    direction="column"
-                    justify="end"
-                    align="center"
+            <Flex
+                className={clsx(styles.logoContainer, "bg-blue-600")}
+                mb="8px"
+                p="16px"
+                justify={{
+                    initial: "between",
+                    xs: "between",
+                    md: "center",
+                }}
+                align="center"
+            >
+                <button
+                    className={styles.iconButton}
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle navigation"
                 >
-                    <Text className={styles.logoText}>Floussi</Text>
-                </Flex>
-            </Link>
+                    <Bars3Icon width="24px" />
+                </button>
+                <Link href="/">
+                    <Flex
+                        height="80px"
+                        direction="column"
+                        justify={{
+                            md: "end",
+                            initial: "center",
+                        }}
+                        align="center"
+                    >
+                        <Text className={styles.logoText}>Floussi</Text>
+                    </Flex>
+                </Link>
 
-            <Flex flexGrow="1" justify="between" direction="column">
-                <NavLink />
-                <Box height="auto" width="100%" flexGrow="1" className="bg-gray-50" />
-
-                <form>
-                    <Button size="3" className={styles.logoutButton}>
-                        <PowerIcon width="24px" />
-                        <Box as="span" display="none">
-                            Sign Out
-                        </Box>
-                    </Button>
-                </form>
+                <button className={styles.iconButton} aria-label="Logout">
+                    <PowerIcon width="24px" />
+                </button>
             </Flex>
+
+            {/* web version */}
+
+            <NavSection
+                display={{
+                    initial: "none",
+                    md: "flex",
+                    xs: "none",
+                }}
+
+            />
+
+            {/* mobile version */}
+            <NavSection
+                display={{
+                    initial: isOpen ? "flex" : "none",
+                    md: "none",
+                }}
+                setIsOpen={setIsOpen}
+                logoutButton={false}
+
+            />
+
         </Flex>
     );
 }
