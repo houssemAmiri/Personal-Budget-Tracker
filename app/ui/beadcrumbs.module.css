@@ -1,0 +1,24 @@
+.breadcrumbNav {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumbList {
+    display: flex;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+
+}
+
+@media (min-width: 1024px) {
+    .breadcrumbList {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+}
+
+.separator {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    display: inline-block;
+}
