@@ -22,14 +22,14 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV DATABASE_URL="file:./dev.db"
+# ENV DATABASE_URL="file:./dev.db"
 
-RUN \
-    if [ -f yarn.lock ]; then yarn run migrate; \
-    elif [ -f package-lock.json ]; then npm run migrate; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run migrate; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+# RUN \
+#     if [ -f yarn.lock ]; then yarn run migrate; \
+#     elif [ -f package-lock.json ]; then npm run migrate; \
+#     elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run migrate; \
+#     else echo "Lockfile not found." && exit 1; \
+#     fi
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
