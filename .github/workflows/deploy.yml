@@ -31,10 +31,11 @@ jobs:
       - name: Deploy to server
         env:
           HOST: ${{ secrets.SERVER_HOST }}
-          USERNAME: ${{ secrets.SERVER_USERNAME }}/home/houssem-amiri/personal-budget-trucker
+          USERNAME: ${{ secrets.SERVER_USERNAME }}
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          PORT: ${{ secrets.SERVER_PORT }}
         run: |
           echo "${SSH_PRIVATE_KEY}" > private_key.pem
           chmod 600 private_key.pem
-          scp -i private_key.pem -o StrictHostKeyChecking=no docker-compose.yml $USERNAME@$HOST:/home/houssem-amiri/personal-budget-trucker
-          ssh -i private_key.pem -o StrictHostKeyChecking=no $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && docker-compose pull && docker-compose up -d'
+          scp -i private_key.pem -o StrictHostKeyChecking=no -P $PORT docker-compose.yml $USERNAME@$HOST:/home/houssem-amiri/personal-budget-trucker
+          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && docker-compose pull && docker-compose up -d'
