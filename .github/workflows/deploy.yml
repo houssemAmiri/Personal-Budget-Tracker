@@ -10,24 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code from the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Docker Buildx for multi-platform builds
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      # Step 3: Log in to DockerHub
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # Step 4: Build and push Docker image to DockerHub
       - name: Build and push Docker image
         run: |
           docker build -t nextjs-docker .
           docker tag nextjs-docker ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-docker:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-docker:latest
 
+      # Step 5: Deploy to Ubuntu server via SSH
       - name: Deploy to server
         env:
           HOST: ${{ secrets.SERVER_HOST }}
@@ -35,7 +40,20 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           PORT: ${{ secrets.SERVER_PORT }}
         run: |
+          # Save the SSH private key securely
           echo "${SSH_PRIVATE_KEY}" > private_key.pem
           chmod 600 private_key.pem
-          scp -i private_key.pem -o StrictHostKeyChecking=no -P $PORT docker-compose.yml $USERNAME@$HOST:/home/houssem-amiri/personal-budget-trucker
-          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && docker-compose pull && docker-compose up -d'
+
+          # Transfer the docker-compose file securely to the remote server
+          scp -i private_key.pem -o StrictHostKeyChecking=no -P $PORT docker-compose.yml $USERNAME@$HOST:/home/$USERNAME/personal-budget-trucker
+
+          # Connect to the server and pull & start the Docker containers
+          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST << 'EOF'
+            cd /home/$USERNAME/personal-budget-trucker
+            docker-compose pull
+            docker-compose up -d
+          EOF
+
+      # Step 6: Clean up by removing the private key
+      - name: Cleanup
+        run: rm -f private_key.pem
