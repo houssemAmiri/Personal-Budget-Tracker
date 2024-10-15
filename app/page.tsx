@@ -14,6 +14,11 @@ export default async function Home() {
     >
       <Text>Personal budget app</Text>
       <Button>Let&apos;s go</Button>
+
+      <Flex>
+        <Text>Users</Text>
+        <Text>{JSON.stringify(user)}</Text>
+      </Flex>
     </Flex>
   );
 }
