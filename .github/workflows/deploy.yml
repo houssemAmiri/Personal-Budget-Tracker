@@ -41,5 +41,5 @@ jobs:
           cat private_key.pem
           # Debugging: Check SSH connection
           ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'echo "SSH connection successful"'
-          scp -i private_key.pem -o StrictHostKeyChecking=no -P $PORT docker-compose.yml Dockerfile $USERNAME@$HOST:/home/houssem-amiri/personal-budget-trucker
-          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && docker-compose pull && docker-compose up -d'
+          scp -i private_key.pem -o StrictHostKeyChecking=no -P $PORT docker-compose.prod.yml $USERNAME@$HOST:/home/houssem-amiri/personal-budget-trucker
+          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && docker-compose -f docker-compose.prod.yml pull && docker-compose -f docker-compose.prod.yml up -d'
