@@ -43,4 +43,4 @@ jobs:
           # Debugging: Check SSH connection
           ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'echo "SSH connection successful"'
           scp -i private_key.pem -o StrictHostKeyChecking=no -P $PORT docker-compose.prod.yml $USERNAME@$HOST:/home/houssem-amiri/personal-budget-trucker
-          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} docker-compose -f docker-compose.prod.yml pull && DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} docker-compose -f docker-compose.prod.yml up -d --force-recreate'
+          ssh -i private_key.pem -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'cd /home/houssem-amiri/personal-budget-trucker && DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} docker-compose -f docker-compose.prod.yml pull && DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} docker compose -f docker-compose.prod.yml up -d --force-recreate'
