@@ -2,6 +2,6 @@ version: "3.8"
 
 services:
   personal-budget-tracker:
-    image: ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-docker:latest
+    image: ${DOCKERHUB_USERNAME}/nextjs-docker:latest
     ports:
       - "3000:3000"
